@@ -1,10 +1,12 @@
 //UC2 Switch case
-//UC 3 Refactor to write a function
+//UC3 Refactor to write a function
+//UC4 Calculate wages for a month
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
+const NUM_OF_WORKING_DAYS = 20;
 
 function getWorkingHours(empCheck) {
     switch(empCheck){
@@ -20,9 +22,13 @@ function getWorkingHours(empCheck) {
     }
 }
 
-let empCheck = Math.floor(Math.random()*10)%3;
-let empHrs = getWorkingHours(empCheck);
-let empWage = empHrs*WAGE_PER_HOUR;
-console.log("Emp hours = "+empHrs+" Employee wage = "+empWage);
+let totalEmpHrs = 0;
+for(let day=0;day<NUM_OF_WORKING_DAYS;day++){
+    let empCheck = Math.floor(Math.random()*10)%3;
+    totalEmpHrs += getWorkingHours(empCheck);
+}
+
+let empWage = totalEmpHrs*WAGE_PER_HOUR;
+console.log("Total emp hours = "+totalEmpHrs+" Total employee wage = "+empWage);
 
 
