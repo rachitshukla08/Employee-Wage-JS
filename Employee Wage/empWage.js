@@ -1,6 +1,4 @@
-//UC2 Switch case
-//UC3 Refactor to write a function
-//UC4 Calculate wages for a month
+//UC6 Store daily wage in array
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
 const PART_TIME_HOURS = 4;
@@ -23,16 +21,25 @@ function getWorkingHours(empCheck) {
     }
 }
 
-let totalEmpHrs = 0;
-let totalWorkingDays = 0;
-while((totalEmpHrs<=MAX_HRS_IN_MONTH)&&(totalWorkingDays<NUM_OF_WORKING_DAYS)){
-    let empCheck = Math.floor(Math.random()*10)%3;
-    totalEmpHrs += getWorkingHours(empCheck);
-    totalWorkingDays++;
+function calcDailyWage(empHrs){
+    return empHrs*WAGE_PER_HOUR;
 }
 
-let empWage = totalEmpHrs*WAGE_PER_HOUR;
-console.log("Total working days: "+totalWorkingDays);
+let totalEmpHrs = 0;
+let totalWorkingDays = 0;
+let dailyWages = 0;
+let empDailyWageArray = new Array();
+while((totalEmpHrs<=MAX_HRS_IN_MONTH)&&(totalWorkingDays<NUM_OF_WORKING_DAYS)){
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random()*10)%3;
+    let empHrs = getWorkingHours(empCheck);
+    totalEmpHrs += getWorkingHours(empCheck);
+    empDailyWageArray.push(calcDailyWage(empHrs));
+}
+
+let empWage = calcDailyWage(totalEmpHrs);
+console.log("Daily Wage Array: "+empDailyWageArray);
+console.log("UC6: Total working days: "+totalWorkingDays);
 console.log("Total emp hours = "+totalEmpHrs+" Total employee wage = "+empWage);
 
 
